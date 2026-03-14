@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-    <div className="space-y-5 animate-fade-in-up">
+    <div className="space-y-7 md:space-y-5 animate-fade-in-up">
       {/* Greeting */}
       <div className="flex items-center justify-between">
         <div>
@@ -170,7 +170,7 @@ const Dashboard: React.FC = () => {
         </div>
         <div className="text-muted-foreground mt-1">Ø {formatCurrency(avgHourly)}/h</div>
 
-        <div className="glass-card mt-4 p-4 grid grid-cols-3 gap-3 text-center">
+        <div className="glass-card mt-5 p-4 grid grid-cols-3 gap-4 md:gap-3 text-center">
           <div>
             <img src={tipsIcon} alt="Tips" className="h-9 w-9 object-contain brightness-0 invert mx-auto mb-1" />
             <div className="font-semibold text-foreground">{currencySymbol}{formatK(totalTips)}</div>
@@ -188,7 +188,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between mt-5">
           <div className="flex items-center gap-2">
             <img src={exIcon} alt="Net estimated" className="h-5 w-5 object-contain brightness-0 invert" />
             <span className="text-muted-foreground">Net (estimated)</span>
@@ -218,15 +218,15 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Today Quick Overview */}
-      <div className="animate-fade-in-up stagger-2">
-        <div className="flex items-center gap-2 mb-3">
-          <img src={calIcon} alt="Today" className="h-[24px] w-[24px] object-contain brightness-0 invert" />
+      <div className="animate-fade-in-up stagger-2 pt-1">
+        <div className="flex items-center gap-2 mb-4 md:mb-3">
+          <img src={calIcon} alt="Today" className="md:h-[24px] md:w-[24px] h-[19px] w-[19px] object-contain brightness-0 invert" />
           <div>
             <div className="font-semibold text-foreground">Today</div>
             <div className="text-xs text-muted-foreground">Quick overview</div>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4 md:gap-3">
           <div className="glass-card-glow p-4 text-center">
             <img src={clockkIcon} alt="Shift" className="h-6 w-6 object-contain brightness-0 invert mx-auto mb-2" />
             <div className="text-xs text-muted-foreground">Shift</div>
@@ -246,7 +246,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Forecast Cards */}
-      <div className="grid grid-cols-2 gap-3 animate-fade-in-up stagger-3">
+      <div className="grid grid-cols-2 gap-4 md:gap-3 animate-fade-in-up stagger-3 pt-1">
         <div className="glass-card-glow p-4">
           <div className="flex items-center gap-2 mb-2">
             <img src={calIcon} alt="Weekly Forecast" className="h-5 w-5 object-contain brightness-0 invert" />
@@ -264,7 +264,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Upcoming Events */}
-      <div className="glass-card p-4 animate-fade-in-up stagger-3">
+      <div className="glass-card p-4 animate-fade-in-up stagger-3 pt-4 md:pt-4">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
             <img src={calIcon} alt="Upcoming Events" className="h-5 w-5 object-contain brightness-0 invert" />
@@ -275,7 +275,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
         {todayShifts.length === 0 ? (
-          <div className="mt-3 glass-card p-4 flex items-center gap-3">
+          <div className="mt-4 md:mt-3 glass-card p-4 flex items-center gap-3">
             <Icon icon="mdi:check-circle" width={28} className="text-green-500" />
             <div>
               <div className="font-medium text-foreground">No events today</div>
@@ -283,11 +283,11 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="mt-3 space-y-2">
+          <div className="mt-4 md:mt-3 space-y-3 md:space-y-2">
             {todayShifts.map(s => {
               const job = getJobById(s.jobId);
               return (
-                <div key={s.id} className="glass-card p-3 flex items-center justify-between">
+                <div key={s.id} className="glass-card p-4 md:p-3 flex items-center justify-between">
                   <div>
                     <div className="font-medium text-foreground">{job?.name || 'Shift'}</div>
                     <div className="text-xs text-muted-foreground">{s.startTime} - {s.endTime}</div>
@@ -302,7 +302,7 @@ const Dashboard: React.FC = () => {
 
       {/* Earnings Chart */}
       {weekEarnings.some(d => d.total > 0) && (
-        <div className="glass-card p-4 animate-fade-in-up stagger-4">
+        <div className="glass-card p-4 animate-fade-in-up stagger-4 pt-4 md:pt-4">
           <h3 className="font-semibold text-foreground mb-3">This Week's Earnings</h3>
           <ResponsiveContainer width="100%" height={180}>
             <BarChart data={weekEarnings}>
@@ -319,7 +319,7 @@ const Dashboard: React.FC = () => {
 
       {/* Expense Pie Chart */}
       {expenseByCategory.length > 0 && (
-        <div className="glass-card p-4 animate-fade-in-up stagger-5">
+        <div className="glass-card p-4 animate-fade-in-up stagger-5 pt-4 md:pt-4">
           <h3 className="font-semibold text-foreground mb-3">Expenses by Category</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
@@ -331,7 +331,7 @@ const Dashboard: React.FC = () => {
               <Tooltip contentStyle={{ background: 'hsl(0,0%,11%)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, color: '#fff' }} />
             </PieChart>
           </ResponsiveContainer>
-          <div className="flex flex-wrap gap-2 mt-2 justify-center">
+          <div className="flex flex-wrap gap-3 md:gap-2 mt-3 md:mt-2 justify-center">
             {expenseByCategory.map((e, i) => (
               <div key={e.name} className="flex items-center gap-1 text-xs text-muted-foreground">
                 <div className="w-2.5 h-2.5 rounded-full" style={{ background: PIE_COLORS[i % PIE_COLORS.length] }} />

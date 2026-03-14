@@ -35,14 +35,14 @@ const Signup: React.FC = () => {
       </div>
 
       <div className="w-full lg:w-1/4 h-full lg:min-h-0 flex items-center justify-center px-3 lg:px-6 py-3 lg:py-8">
-        <div className="w-full max-w-[500px]">
+        <div className="w-full max-w-[500px] min-w-0">
           <div className="mb-1 md:mb-2 md:px-6 px-4">
            
             <h1 className="text-2xl font-bold text-foreground">Create Account</h1>
             <p className="text-muted-foreground mt-1">Start tracking your time and income</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="glass-card auth-card px-3 py-4 md:p-6 space-y-3 md:space-y-4">
+          <form onSubmit={handleSubmit} className="glass-card auth-card w-full min-w-0 px-3 py-4 md:p-6 space-y-3 md:space-y-4">
             {error && <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-xl">{error}</div>}
 
             <div>

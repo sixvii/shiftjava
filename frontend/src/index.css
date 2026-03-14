@@ -53,6 +53,8 @@
     @apply bg-background text-foreground;
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   img,
   video,
@@ -74,6 +76,22 @@
       -webkit-overflow-scrolling: touch;
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+
+    form {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+      line-height: 1.25rem;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
     }
 
     html::-webkit-scrollbar,
@@ -109,6 +127,8 @@
   }
   .auth-input {
     border-color: #94423380;
+    font-size: 16px;
+    line-height: 1.25rem;
   }
   .auth-input:focus {
     border-color: #944233;
@@ -135,6 +155,12 @@
   @media (max-width: 767px) {
     .auth-card {
       border: none;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .auth-input {
+      font-size: 16px;
     }
   }
   .glass-card-glow {
