@@ -128,18 +128,22 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-    <div className="space-y-7 md:space-y-5 animate-fade-in-up">
+    <div className="space-y-7 md:space-y-5 pt-4 md:pt-0">
       {/* Greeting */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-lg md:text-xl font-semibold text-foreground">
-            Good {now.getHours() < 12 ? 'morning' : now.getHours() < 18 ? 'afternoon' : 'evening'}, {settings.name || user?.username || 'there'}
-          </h1>
-        </div>
-        <div className="flex gap-2">
-          <button className="fab !w-10 !h-10" onClick={() => navigate('/settings')}>
-            <Icon icon="mdi:cog" width={20} className="text-foreground" />
-          </button>
+      <div className="fixed inset-x-0 top-0 z-30 bg-background px-4 py-2 md:static md:inset-auto md:z-auto md:bg-transparent md:px-0 md:py-0">
+        <div className="mx-auto max-w-4xl lg:max-w-5xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg md:text-xl font-semibold text-foreground">
+                Good {now.getHours() < 12 ? 'morning' : now.getHours() < 18 ? 'afternoon' : 'evening'}, {settings.name || user?.username || 'there'}
+              </h1>
+            </div>
+            <div className="flex gap-2">
+              <button className="fab !w-10 !h-10" onClick={() => navigate('/settings')}>
+                <Icon icon="mdi:cog" width={20} className="text-foreground" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

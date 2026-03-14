@@ -76,14 +76,14 @@ const MobileNav: React.FC = () => {
 
   return (
     <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 glass-card rounded-none border-t border-border/50">
-      <div className="flex items-center justify-around py-2 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex items-center justify-around py-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)]">
         {mobileItems.map(item => {
           const active = location.pathname === item.path;
           return (
             <NavLink
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors ${
+              className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-colors ${
                 active ? 'text-primary' : 'text-muted-foreground'
               }`}
             >

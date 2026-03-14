@@ -346,7 +346,7 @@ const Calendar: React.FC = () => {
                   type="time"
                   value={tplStart}
                   onChange={e => setTplStart(e.target.value)}
-                  className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
+                  className="time-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>
               <div>
@@ -355,7 +355,7 @@ const Calendar: React.FC = () => {
                   type="time"
                   value={tplEnd}
                   onChange={e => setTplEnd(e.target.value)}
-                  className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
+                  className="time-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>
             </div>
@@ -365,6 +365,7 @@ const Calendar: React.FC = () => {
                 type="number"
                 value={tplBreak}
                 onChange={e => setTplBreak(Number(e.target.value))}
+                onFocus={e => e.target.select()}
                 className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
               />
             </div>
@@ -399,23 +400,23 @@ const Calendar: React.FC = () => {
                 ))}
               </select>
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
+            <div className="flex justify-between gap-6 grid md:grid-cols-2 grid-cols-1">
+              <div className="w-[40%] md:w-auto">
                 <label className="text-sm text-muted-foreground">Start</label>
                 <input
                   type="time"
                   value={formStart}
                   onChange={e => setFormStart(e.target.value)}
-                  className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
+                  className="time-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>
-              <div>
+              <div className="w-[40%] md:w-auto">
                 <label className="text-sm text-muted-foreground">End</label>
                 <input
                   type="time"
                   value={formEnd}
                   onChange={e => setFormEnd(e.target.value)}
-                  className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
+                  className="time-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>
             </div>
@@ -425,6 +426,7 @@ const Calendar: React.FC = () => {
                 type="number"
                 value={formBreak}
                 onChange={e => setFormBreak(Number(e.target.value))}
+                onFocus={e => e.target.select()}
                 className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
               />
             </div>
@@ -435,6 +437,7 @@ const Calendar: React.FC = () => {
                   type="number"
                   value={formTips}
                   onChange={e => setFormTips(Number(e.target.value))}
+                  onFocus={e => e.target.select()}
                   className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>
@@ -444,6 +447,7 @@ const Calendar: React.FC = () => {
                   type="number"
                   value={formPremiums}
                   onChange={e => setFormPremiums(Number(e.target.value))}
+                  onFocus={e => e.target.select()}
                   className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50"
                 />
               </div>

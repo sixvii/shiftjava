@@ -87,7 +87,7 @@ const Jobs: React.FC = () => {
           </div>
           <div>
             <label className="text-sm text-muted-foreground">Hourly Rate ({currencySymbol})</label>
-            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} min={0} step={0.5}
+            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} onFocus={e => e.target.select()} min={0} step={0.5}
               className="w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border border-border/50 outline-none focus:border-primary/50" />
           </div>
           <div>

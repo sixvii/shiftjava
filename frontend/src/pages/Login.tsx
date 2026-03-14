@@ -32,42 +32,42 @@ const Login: React.FC = () => {
         <img src={greenImage} alt="Green background" className="h-full w-full object-cover" />
       </div>
 
-      <div className="w-full lg:w-1/4 h-full lg:min-h-0 flex items-center justify-center px-3 lg:px-6 py-3 lg:py-8">
-        <div className="w-full max-w-[500px] min-w-0">
-          <div className="mb-1 md:mb-2 md:px-6 px-3">
+      <div className="w-full lg:w-1/4 h-full lg:min-h-0 flex items-center justify-center px-3 lg:px-6 py-2 lg:py-8">
+        <div className="w-full max-w-[500px] min-w-0 h-full max-h-full flex flex-col justify-center">
+          <div className="mb-1 md:mb-2 md:px-6 px-2">
             
-            <h1 className="text-2xl font-bold text-foreground">Log in to start tracking your shifts,time and expenses</h1>
-            <p className="text-muted-foreground mt-1">Sign in to continue</p>
+            <h1 className="text-[1.35rem] leading-tight lg:text-2xl font-bold text-foreground">Log in to start tracking your shifts,time and expenses</h1>
+            <p className="text-muted-foreground mt-1 text-sm">Sign in to continue</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="glass-card auth-card w-full min-w-0 px-2 py-4 md:p-6 space-y-3 md:space-y-4">
-            {error && <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-xl">{error}</div>}
+          <form onSubmit={handleSubmit} className="glass-card auth-card w-full min-w-0 px-2 py-3 md:p-6 space-y-2.5 md:space-y-4">
+            {error && <div className="text-xs md:text-sm text-destructive bg-destructive/10 p-2.5 rounded-xl">{error}</div>}
 
             <div>
               <label className="text-sm text-muted-foreground">Email</label>
               <input type="text" value={usernameOrEmail} onChange={e => setUsernameOrEmail(e.target.value)}
-                className="auth-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border outline-none"
+                className="auth-input w-full mt-1 p-2.5 md:p-3 rounded-xl bg-secondary/60 text-foreground border outline-none"
                 placeholder="Enter email" />
             </div>
 
             <div>
               <label className="text-sm text-muted-foreground">Password</label>
               <input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)}
-                className="auth-input w-full mt-1 p-3 rounded-xl bg-secondary/60 text-foreground border outline-none"
+                className="auth-input w-full mt-1 p-2.5 md:p-3 rounded-xl bg-secondary/60 text-foreground border outline-none"
                 placeholder="Enter password" />
-              <div className="flex justify-end mt-2">
-                <Link to="/forgot-password" className="text-sm text-primary font-medium">
+              <div className="flex justify-end mt-1.5">
+                <Link to="/forgot-password" className="text-xs md:text-sm text-primary font-medium">
                   Forgot password?
                 </Link>
               </div>
-              <label className="flex items-center gap-2 mt-2 cursor-pointer">
+              <label className="flex items-center gap-2 mt-1.5 cursor-pointer">
                 <input type="checkbox" checked={showPassword} onChange={e => setShowPassword(e.target.checked)}
-                  className="w-5 h-5 rounded accent-primary" />
-                <span className="text-sm text-muted-foreground">See password</span>
+                  className="w-4 h-4 md:w-5 md:h-5 rounded accent-primary" />
+                <span className="text-xs md:text-sm text-muted-foreground">See password</span>
               </label>
             </div>
 
-            <button type="submit" disabled={isSubmitting} className="w-full p-3 rounded-xl bg-primary text-primary-foreground font-semibold transition-all hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center">
+            <button type="submit" disabled={isSubmitting} className="w-full p-2.5 md:p-3 rounded-xl bg-primary text-primary-foreground font-semibold transition-all hover:opacity-90 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center">
               {isSubmitting ? (
                 <span className="dot-loader" aria-label="Signing in">
                   <span></span>
@@ -77,7 +77,7 @@ const Login: React.FC = () => {
               ) : 'Sign In'}
             </button>
 
-            <p className=" text-[14px] text-muted-foreground">
+            <p className="text-[13px] md:text-[14px] text-muted-foreground">
               Don't have an account? <Link to="/signup" className="text-primary font-medium">Sign up</Link>
             </p>
           </form>
