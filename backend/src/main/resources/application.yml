@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: shiftt-backend
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/shiftt}
+      auto-index-creation: true
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:false}
+          starttls:
+            enable: ${MAIL_SMTP_STARTTLS:false}
+server:
+  port: ${PORT:8080}
+
+app:
+  frontend:
+    base-url: ${FRONTEND_BASE_URL:http://localhost:5173}
+    allowed-origins: ${FRONTEND_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:8080,http://127.0.0.1:5173,http://127.0.0.1:8080}
+  jwt:
+    # Base64-encoded 64-byte key (sample dev key, rotate in production)
+    secret: ${JWT_SECRET:MzIxRkE2QkNBQzY3OTAyRkQxN0I5QjQwNEI0QjM1MzgxNDkzQjQ4M0M2NjJCMjQ2NDM5NzdFQjU5ODUxRDAwMkY1OEQ2NDM2NEI4QjA5Q0Q4RjkxRjI0MkI0QzQ0OTUxQkQ0QjEwQTE4NEUwRjk5Nw==}
+    access-expiration-ms: ${JWT_ACCESS_EXPIRATION_MS:900000}
+    refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:2592000000}
+    password-reset-expiration-ms: ${JWT_PASSWORD_RESET_EXPIRATION_MS:3600000}
+  password-reset:
+    from-email: ${PASSWORD_RESET_FROM_EMAIL:no-reply@shiftt.local}
+    mail-log-only: ${PASSWORD_RESET_MAIL_LOG_ONLY:false}

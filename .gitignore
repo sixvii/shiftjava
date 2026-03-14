@@ -1,0 +1,28 @@
+# Environment secrets - NEVER commit these
+.env
+.env.local
+.env.production
+.env.staging
+
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Backend build output
+backend/target/
+
+# Frontend build output
+frontend/dist/
+frontend/dist-ssr/
+frontend/node_modules/
+
+# Logs
+*.log

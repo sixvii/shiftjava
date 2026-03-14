@@ -1,0 +1,45 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: shiftt-mongodb
+    environment:
+      MONGO_INITDB_DATABASE: shiftt
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 20s
+      timeout: 10s
+      retries: 20
+      start_period: 20s
+    volumes:
+      - mongodb-data:/data/db
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: shiftt-mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shiftt-backend
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      MONGODB_URI: ${MONGODB_URI:-mongodb://mongodb:27017/shiftt}
+      JWT_SECRET: MzIxRkE2QkNBQzY3OTAyRkQxN0I5QjQwNEI0QjM1MzgxNDkzQjQ4M0M2NjJCMjQ2NDM5NzdFQjU5ODUxRDAwMkY1OEQ2NDM2NEI4QjA5Q0Q4RjkxRjI0MkI0QzQ0OTUxQkQ0QjEwQTE4NEUwRjk5Nw==
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      FRONTEND_BASE_URL: http://localhost:5173
+      FRONTEND_ALLOWED_ORIGINS: http://localhost:5173,http://localhost:8080,http://127.0.0.1:5173,http://127.0.0.1:8080
+      PASSWORD_RESET_FROM_EMAIL: no-reply@shiftt.local
+    ports:
+      - "8081:8080"
+
+volumes:
+  mongodb-data:
