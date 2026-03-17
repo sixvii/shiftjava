@@ -157,23 +157,29 @@
     }
   }
   .dot-loader {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
   }
   .dot-loader span {
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background-color: currentColor;
-    opacity: 0.35;
-    animation: dotPulse 1s infinite ease-in-out;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spinRound 1s linear infinite;
   }
   .dot-loader span:nth-child(2) {
-    animation-delay: 0.15s;
+    border-right-color: currentColor;
+    animation-delay: 0.2s;
+    opacity: 0.7;
   }
   .dot-loader span:nth-child(3) {
-    animation-delay: 0.3s;
+    border-bottom-color: currentColor;
+    animation-delay: 0.4s;
+    opacity: 0.5;
   }
   @media (max-width: 767px) {
     .auth-card {
@@ -260,16 +266,12 @@
   }
 }
 
-@keyframes dotPulse {
-  0%,
-  80%,
-  100% {
-    opacity: 0.35;
-    transform: translateY(0);
+@keyframes spinRound {
+  0% {
+    transform: rotate(0deg);
   }
-  40% {
-    opacity: 1;
-    transform: translateY(-2px);
+  100% {
+    transform: rotate(360deg);
   }
 }
 

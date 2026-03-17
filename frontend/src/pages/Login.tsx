@@ -17,13 +17,14 @@ const Login: React.FC = () => {
     setError('');
     if (!usernameOrEmail || !password) { setError('All fields are required'); return; }
     setIsSubmitting(true);
-    try {
-      const err = await login(usernameOrEmail, password);
-      if (err) { setError(err); return; }
-      navigate('/');
-    } finally {
+    const err = await login(usernameOrEmail, password);
+    if (err) {
+      setError(err);
       setIsSubmitting(false);
+      return;
     }
+    navigate('/');
+    // Let navigation handle spinner removal
   };
 
   return (
@@ -32,15 +33,15 @@ const Login: React.FC = () => {
         <img src={greenImage} alt="Green background" className="h-full w-full object-cover" />
       </div>
 
-      <div className="w-full lg:w-1/4 h-full lg:min-h-0 flex items-center justify-center px-3 lg:px-6 py-2 lg:py-8">
+      <div className="w-full lg:w-1/4 h-full lg:min-h-0 flex items-center justify-center px-4 lg:px-6 py-4 lg:py-8">
         <div className="w-full max-w-[500px] min-w-0 h-full max-h-full flex flex-col justify-center">
-          <div className="mb-1 md:mb-2 md:px-6 px-2">
+          <div className="mb-2 md:mb-2 md:px-6 px-3">
             
             <h1 className="text-[1.35rem] leading-tight lg:text-2xl font-bold text-foreground">Log in to start tracking your shifts,time and expenses</h1>
             <p className="text-muted-foreground mt-1 text-sm">Sign in to continue</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="glass-card auth-card w-full min-w-0 px-2 py-3 md:p-6 space-y-2.5 md:space-y-4">
+          <form onSubmit={handleSubmit} className="glass-card auth-card w-full min-w-0 px-3 py-4 md:p-6 space-y-3 md:space-y-4">
             {error && <div className="text-xs md:text-sm text-destructive bg-destructive/10 p-2.5 rounded-xl">{error}</div>}
 
             <div>
@@ -62,7 +63,7 @@ const Login: React.FC = () => {
               </div>
               <label className="flex items-center gap-2 mt-1.5 cursor-pointer">
                 <input type="checkbox" checked={showPassword} onChange={e => setShowPassword(e.target.checked)}
-                  className="w-4 h-4 md:w-5 md:h-5 rounded accent-primary" />
+                  className="w-6 h-6 md:w-5 md:h-5 rounded accent-primary" />
                 <span className="text-xs md:text-sm text-muted-foreground">See password</span>
               </label>
             </div>

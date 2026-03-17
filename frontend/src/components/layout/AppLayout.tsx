@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import logo from '@/assets/images/logo.png';
+import dashIcon from '@/assets/images/dash.png';
 import expensesIcon from '@/assets/images/expenses.png';
 import jobsIcon from '@/assets/images/jobs.png';
 import calIcon from '@/assets/images/cal.png';
@@ -17,7 +18,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { path: '/', label: 'Dashboard', icon: 'mdi:view-dashboard' },
+  { path: '/', label: 'Dashboard', iconImage: dashIcon },
   { path: '/calendar', label: 'Calendar', iconImage: calIcon },
   { path: '/insights', label: 'Insights', iconImage: insightsIcon },
   { path: '/jobs', label: 'Jobs', iconImage: jobsIcon },
@@ -25,18 +26,19 @@ const navItems: NavItem[] = [
   { path: '/settings', label: 'Settings', icon: 'mdi:cog' },
 ];
 
-const renderNavIcon = (item: NavItem, active: boolean) => {
+const renderNavIcon = (item: NavItem, active: boolean, size: number = 22) => {
   if (item.iconImage) {
     return (
       <img
         src={item.iconImage}
         alt={item.label}
-        className={`h-[22px] w-[22px] object-contain ${active ? 'opacity-100' : 'opacity-80'} ${(item.label === 'Calendar' || item.label === 'Insights' || item.label === 'Jobs' || item.label === 'Expenses') ? 'brightness-0 invert' : ''}`}
+        className={`h-[${size}px] w-[${size}px] object-contain brightness-0 invert ${active ? 'opacity-100' : 'opacity-80'}`}
+        style={{ height: `${size}px`, width: `${size}px` }}
       />
     );
   }
 
-  return <Icon icon={item.icon ?? ''} width={22} className={active ? 'text-primary' : 'text-foreground'} />;
+  return <Icon icon={item.icon ?? ''} width={size} className={active ? 'text-primary' : 'text-foreground'} />;
 };
 
 const Sidebar: React.FC = () => {
@@ -87,7 +89,7 @@ const MobileNav: React.FC = () => {
                 active ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              {renderNavIcon(item, active)}
+              {renderNavIcon(item, active, 24)}
               <span className="text-[10px]">{item.label}</span>
             </NavLink>
           );

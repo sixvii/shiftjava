@@ -172,16 +172,16 @@ const Dashboard: React.FC = () => {
         <div className="text-[25px] md:text-[35px] font-bold text-foreground tracking-tight">
           {currencySymbol}{formatK(totalEarnings)}
         </div>
-        <div className="text-muted-foreground mt-1">Ø {formatCurrency(avgHourly)}/h</div>
+        <div className="text-muted-foreground mt-1">{formatCurrency(avgHourly)}/h</div>
 
         <div className="glass-card mt-5 p-4 grid grid-cols-3 gap-4 md:gap-3 text-center">
           <div>
-            <img src={tipsIcon} alt="Tips" className="h-9 w-9 object-contain brightness-0 invert mx-auto mb-1" />
+            <img src={tipsIcon} alt="Tips" className="h-7 w-7 object-contain brightness-0 invert mx-auto mb-1" />
             <div className="font-semibold text-foreground">{currencySymbol}{formatK(totalTips)}</div>
             <div className="text-xs text-muted-foreground">Tips</div>
           </div>
           <div>
-            <img src={jobsIcon} alt="Wage" className="h-7 w-7 object-contain brightness-0 invert mx-auto mb-1" />
+            <img src={jobsIcon} alt="Wage" className="h-6 w-6 object-contain brightness-0 invert mx-auto mb-1" />
             <div className="font-semibold text-foreground">{currencySymbol}{formatK(totalWage)}</div>
             <div className="text-xs text-muted-foreground">Wage</div>
           </div>
@@ -223,9 +223,9 @@ const Dashboard: React.FC = () => {
 
       {/* Today Quick Overview */}
       <div className="animate-fade-in-up stagger-2 pt-1">
-        <div className="flex items-center gap-2 mb-4 md:mb-3">
+        <div className="flex items-center gap-2 mb-4 md:mb-3 ml-4 md:ml-6">
           <img src={calIcon} alt="Today" className="md:h-[24px] md:w-[24px] h-[19px] w-[19px] object-contain brightness-0 invert" />
-          <div>
+          <div className=''>
             <div className="font-semibold text-foreground">Today</div>
             <div className="text-xs text-muted-foreground">Quick overview</div>
           </div>

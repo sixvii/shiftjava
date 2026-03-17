@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,17 +6,20 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider, useApp } from "@/contexts/AppContext";
 import AppLayout from "@/components/layout/AppLayout";
-import Dashboard from "@/pages/Dashboard";
-import Calendar from "@/pages/Calendar";
-import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import ForgotPassword from "@/pages/ForgotPassword";
-import ResetPassword from "@/pages/ResetPassword";
-import Settings from "@/pages/Settings";
-import Insights from "@/pages/Insights";
-import Jobs from "@/pages/Jobs";
-import Expenses from "@/pages/Expenses";
-import NotFound from "./pages/NotFound";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
+// Lazy load pages for faster initial load
+const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const Calendar = lazy(() => import("@/pages/Calendar"));
+const Login = lazy(() => import("@/pages/Login"));
+const Signup = lazy(() => import("@/pages/Signup"));
+const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
+const Settings = lazy(() => import("@/pages/Settings"));
+const Insights = lazy(() => import("@/pages/Insights"));
+const Jobs = lazy(() => import("@/pages/Jobs"));
+const Expenses = lazy(() => import("@/pages/Expenses"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -23,14 +27,14 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const { user, isBootstrapping } = useApp();
   if (isBootstrapping) return null;
   if (!user) return <Navigate to="/login" replace />;
-  return <AppLayout>{children}</AppLayout>;
+  return <AppLayout><Suspense fallback={<LoadingSpinner isVisible />}>{children}</Suspense></AppLayout>;
 };
 
 const AuthRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isBootstrapping } = useApp();
   if (isBootstrapping) return null;
   if (user) return <Navigate to="/" replace />;
-  return <>{children}</>;
+  return <Suspense fallback={<LoadingSpinner isVisible />}>{children}</Suspense>;
 };
 
 const AppRoutes = () => (
